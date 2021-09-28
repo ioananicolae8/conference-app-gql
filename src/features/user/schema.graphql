@@ -36,3 +36,7 @@ extend type Mutation {
 extend type Subscription {
     userChanged: String
 }
+
+extend type Query {
+    myFirstEndpoint: String
+}
