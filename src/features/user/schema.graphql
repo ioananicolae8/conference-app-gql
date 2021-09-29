@@ -1,20 +1,20 @@
 input UserInputType {
-    id: Int!
-    firstName: String
-    lastName: String
+  id: Int!
+  firstName: String
+  lastName: String
 }
 
 type User {
-    id: ID!
-    userName: String
-    firstName: String
-    lastName: String
-    rights: [String!]
+  id: ID!
+  userName: String
+  firstName: String
+  lastName: String
+  rights: [String!]
 }
 
 input UserFilterInput {
-    firstName: String
-    lastName: String
+  firstName: String
+  lastName: String
 }
 
 type UserList {
@@ -23,20 +23,20 @@ type UserList {
 }
 
 extend type Query {
-    userData(id: ID, externalId: ID): User
-    userList(pager: PagerInput!, filters: UserFilterInput): UserList!
+  userData(id: ID, externalId: ID): User
+  userList(pager: PagerInput!, filters: UserFilterInput): UserList!
 }
 
 # Not working! Only for demonstration
 extend type Mutation {
-    updateUser(input: UserInputType!): String
+  updateUser(input: UserInputType!): String
 }
 
 # Not working! Only for demonstration
 extend type Subscription {
-    userChanged: String
+  userChanged: String
 }
 
 extend type Query {
-    myFirstEndpoint: String
+  myFirstEndpoint: String
 }
