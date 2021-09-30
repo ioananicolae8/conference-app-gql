@@ -4,7 +4,7 @@ class ConferenceDb extends SQLDataSource {
   generateWhereClause(queryBuilder, filters = {}) {
     const { startDate, endDate } = filters
     if (startDate) queryBuilder.andWhere('StartDate', '>=', startDate)
-    if (endDate) queryBuilder.andWhere('EndDate', '>=', endDate)
+    if (endDate) queryBuilder.andWhere('EndDate', '<=', endDate)
   }
  
   async getConferenceList(pager, filters) {

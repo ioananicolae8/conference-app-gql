@@ -16,7 +16,7 @@ const getConferenceLoaders = dbInstance => {
                 .from('ConferenceXSpeaker AS c')
                 .innerJoin('Speaker AS s', 'c.SpeakerId', '=', 's.Id')
                 .whereIn('c.ConferenceId', ids)
-                .then(rows => ids.map(id => rows.filter(row => row.id === id)))
+                .then(rows => ids.map(id => rows.filter(row => row.conferenceId === id)))
         ),
  
     }
