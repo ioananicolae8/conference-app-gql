@@ -3,8 +3,8 @@ const {randomCharacters} = require("../../utils/functions");
 const conferenceResolvers = {
 Query: {
     conferenceList: async (_parent, { pager, filters }, { dataSources }, _info) => {
-       // const data = await dataSources.conferenceDb.getConferenceList(pager, filters);
-       // return data
+       const data = await dataSources.conferenceDb.getConferenceList(pager, filters);
+       return data
     },
     conference:
     async (_parent, { id}, { dataSources }, _info) => {
