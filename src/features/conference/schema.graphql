@@ -10,7 +10,6 @@ type Conference {
   status(userEmail: String!): Status
 }
 
-
 type Location {
   id: ID!
   name: String
@@ -21,7 +20,6 @@ type Location {
   county: County!
   country: Country!
 }
-
 
 type Speaker {
   id: ID!
@@ -40,17 +38,23 @@ input ConferenceFilterInput {
   endDate: DateTime
   organizerEmail: String
 }
-extend type Query {
-  conferenceList(pager: PagerInput!, filters: ConferenceFilterInput): ConferenceList
-  conference(id:ID!): Conference
+
+type AttendConference {
+  code: String
+  suggestedConferences: [Conference!]
 }
 
+extend type Query {
+  conferenceList(pager: PagerInput!, filters: ConferenceFilterInput): ConferenceList
+  conference(id: ID!): Conference
+}
 
 input Attendee {
-    attendeeEmail: String!
-    conferenceId: ID!
+  attendeeEmail: String!
+  conferenceId: ID!
 }
 
 extend type Mutation {
-  attend(input: Attendee): String
+  attend(input: Attendee!): AttendConference
+  withdraw(input: Attendee!): Int
 }

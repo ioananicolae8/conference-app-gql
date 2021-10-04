@@ -2,12 +2,15 @@ const ConferenceDb = require('../features/conference/conferenceDb')
 const UserApi = require('../features/user/dataSources/userApi')
 const UserDb = require('../features/user/dataSources/userDb')
 const DictionaryDb = require('../features/dictionaries/dictionaryDb')
+const ConferenceApi = require('../features/conference/conferenceApi')
 
 const ds = {
   userApi: new UserApi(),
   userDb: new UserDb(),
   conferenceDb: new ConferenceDb(),
-  dictionaryDb: new DictionaryDb()
+  dictionaryDb: new DictionaryDb(),
+  conferenceApi: new ConferenceApi()
+
 }
 
 module.exports.getDataSources = () => ds

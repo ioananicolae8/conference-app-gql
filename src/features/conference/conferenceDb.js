@@ -37,39 +37,32 @@ class ConferenceDb extends SQLDataSource {
       .first()
 
     return result
-
   }
+
   async updateConferenceXAttendee({ attendeeEmail, conferenceId, statusId }) {
     const existing = await this.knex
-      .select("Id", "AttendeeEmail", "ConferenceId")
-      .from("ConferenceXAttendee")
-      .where("AttendeeEmail", attendeeEmail)
-      .andWhere("ConferenceId", conferenceId)
+      .select('Id', 'AttendeeEmail', 'ConferenceId')
+      .from('ConferenceXAttendee')
+      .where('AttendeeEmail', attendeeEmail)
+      .andWhere('ConferenceId', parseInt(conferenceId))
       .first()
 
-    const updateAttendee = {
+    const attendeeInfo = {
       AttendeeEmail: attendeeEmail,
-      ConferenceId: conferenceId,
+      ConferenceId:  parseInt(conferenceId),
       StatusId: statusId
     }
 
     let result
     if (existing?.id) {
-      result = await this.knex('ConferenceXAttendee').update(updateAttendee, 'StatusId').where('Id', existing.id)
-      //update
+      result = await this.knex('ConferenceXAttendee').update(attendeeInfo, 'StatusId').where('Id', existing?.id)
+    } else {
+      result = await this.knex('ConferenceXAttendee').returning('StatusId').insert(attendeeInfo)
     }
-    else { 
-      //insert
-      result = await this.knex('ConferenceXAttendee')
-            .returning('StatusId')
-            .insert(updateAttendee);
 
-    }
     return result[0]
   }
 
 }
-
-
 
 module.exports = ConferenceDb;
