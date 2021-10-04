@@ -44,3 +44,13 @@ extend type Query {
   conferenceList(pager: PagerInput!, filters: ConferenceFilterInput): ConferenceList
   conference(id:ID!): Conference
 }
+
+
+input Attendee {
+    attendeeEmail: String!
+    conferenceId: ID!
+}
+
+extend type Mutation {
+  attend(input: Attendee): String
+}
