@@ -99,5 +99,6 @@ input ConferenceInput {
 extend type Mutation {
   attend(input: Attendee!): AttendConference
   withdraw(input: Attendee!): Int
+  join(input: Attendee!): String
   saveConference(input: ConferenceInput): Conference
 }
