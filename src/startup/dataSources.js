@@ -10,7 +10,6 @@ const ds = {
   conferenceDb: new ConferenceDb(),
   dictionaryDb: new DictionaryDb(),
   conferenceApi: new ConferenceApi()
-
 }
 
 module.exports.getDataSources = () => ds

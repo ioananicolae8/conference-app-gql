@@ -12,7 +12,11 @@ const conferenceResolvers = {
             async (_parent, { id }, { dataSources }, _info) => {
                 const data = await dataSources.conferenceDb.getConferenceById(id)
                 return data
-            }
+            },
+            joinedAttendees: async (_parent, { id }, { dataSources }, _info) => {
+                const data = await dataSources.conferenceDb.getAttendeesByConference(id)
+                return data
+              }
     },
     ConferenceList: {
         pagination: async (_parent, { pager, filters }, { dataSources }, _info) => {
